@@ -25,11 +25,11 @@ class Test
         user_input = STDIN.gets.encode("UTF-8").chomp
       end
 
-      xxx(user_input)
+      scoring(user_input)
     end
   end
 
-  def xxx(user_input)
+  def scoring(user_input)
     if user_input == ANSWER_YES
       @score += 2
     elsif user_input == ANSWER_SOMETIMES
