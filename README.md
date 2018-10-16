@@ -1,5 +1,5 @@
-# sociability_test
-*sociability_test - это программа, которая тестирует ваш уровень общительности.*
+# Sociability Test
+*Sociability Test - это программа, которая тестирует ваш уровень общительности.*
 
 *За основу взят тест В.Ф. Ряховского -> [источник](http://psylist.net/praktikum/00003.htm)*
 
