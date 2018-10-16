@@ -1,7 +1,7 @@
 # encoding: utf-8
 
-# Подключаем класс sociability_test
-require "./lib/sociability_test"
+# Подключаем класс test
+require "./lib/test.rb"
 
 # Этот код необходим только при использовании русских букв на Windows
 if Gem.win_platform?
