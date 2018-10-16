@@ -1,50 +1,61 @@
 # class Test : массив вопросов, методы учета баллов и функцию считывания ввода
 class Test
-  def initialize(user_name)
+  ANSWER_YES = "1"
+  ANSWER_NO = "2"
+  ANSWER_SOMETIMES = "3"
+
+  def initialize(user_name, questions_file_path, answers_file_path)
     @user_name = user_name
+
+    @questions = File.readlines(questions_file_path)
+    @answers = File.readlines(answers_file_path)
+
+    @score = 0
   end
 
   # Задавать пользователю вопросы и записывать его ответы
-  def ask_questions(questions)
-    score = 0
-    questions.each do |question|
+  def ask_questions
+    @questions.each do |question|
       puts question
 
       user_input = nil
 
-      until user_input == "1" || user_input == "2" || user_input == "3" do
+      until user_input == ANSWER_YES || user_input == ANSWER_NO || user_input == ANSWER_SOMETIMES do
         puts "\nВведите число и нажмите Enter: 1 – да, 2 – нет и 3 – иногда"
         user_input = STDIN.gets.encode("UTF-8").chomp
       end
 
-      if user_input == "1"
-        score += 2
-      elsif user_input == "3"
-        score += 1
-      else
-        score
-      end
+      xxx(user_input)
     end
+  end
 
-    return score
+  def xxx(user_input)
+    if user_input == ANSWER_YES
+      @score += 2
+    elsif user_input == ANSWER_SOMETIMES
+      @score += 1
+    else
+      @score
+    end
   end
 
   # Выводим результат пользователю
-  def print_status(answers, result)
-    if result >= 30
-      answers[0]
-    elsif result >= 25
-      answers[1]
-    elsif result >= 19
-      answers[2]
-    elsif result >= 14
-      answers[3]
-    elsif result >= 9
-      answers[4]
-    elsif result >= 4
-      answers[5]
-    else
-      answers[6]
+  def print_answer
+    case @score
+    when 30..32 then
+      @answers[0]
+    when 24..29 then
+      @answers[1]
+    when 19..24 then
+      @answers[2]
+    when 14..18 then
+      @answers[3]
+    when 9..13 then
+      @answers[4]
+    when 4..8 then
+      @answers[5]
+    when 0..3 then
+      @answers[6]
     end
   end
 end

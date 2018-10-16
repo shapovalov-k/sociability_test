@@ -1,9 +1,9 @@
 # encoding: utf-8
 
-# Подключаем класс test
+# Подключаем класс test.
 require "./lib/test.rb"
 
-# Этот код необходим только при использовании русских букв на Windows
+# Этот код необходим только при использовании русских букв на Windows.
 if Gem.win_platform?
   Encoding.default_external = Encoding.find(Encoding.locale_charmap)
   Encoding.default_internal = __ENCODING__
@@ -13,32 +13,27 @@ if Gem.win_platform?
   end
 end
 
-questions_file_name = File.dirname(__FILE__) + "/data/questions.txt"
-answers_file_name = File.dirname(__FILE__) + "/data/answers.txt"
-
-questions_file = File.new(questions_file_name, 'r:utf-8')
-questions = questions_file.readlines
-questions_file.close
-
-answers_file = File.new(answers_file_name, 'r:utf-8')
-answers = answers_file.readlines
-answers_file.close
+current_path = File.dirname(__FILE__) + '/data'
+questions_file_path = current_path + "/questions.txt"
+answers_file_path = current_path + "/answers.txt"
 
 user_name = ARGV[0]
 
-# Если пользователь забыл указать аргумент, записываем сюда - Любознательный человек
+# Если пользователь забыл указать аргумент, записываем сюда - Любознательный человек.
 if user_name == nil
   user_name = "Любознательный человек"
 end
 
-puts "\nДобро пожаловать #{user_name}! А теперь давайте оценим ваш уровень общительности."
-puts "\nИнструкция : Вашему вниманию предлагается несколько простых вопросов. Отвечайте быстро, однозначно: 1 - «да», 2 - «нет», 3 - «иногда»."
+puts "\nДобро пожаловать #{user_name}! Давайте оценим ваш уровень общительности."
+puts "\nИнструкция : Вашему вниманию предлагается несколько простых вопросов"
+puts "\nОтвечайте быстро, однозначно: 1 - «да», 2 - «нет», 3 - «иногда». \n\n"
 
-# Создаем объект test класса Test с параметром user_name
-test = Test.new(user_name)
+# Создаем объект test класса Test
+test = Test.new(user_name, questions_file_path, answers_file_path)
 
 # Задаем пользователю вопрос и просим на него ответить
-result = test.ask_questions(questions)
+test.ask_questions
+
 # Выводим игроку результаты теста
 puts "\nВаш результат теста : "
-puts test.print_status(answers, result)
+puts test.print_answer
